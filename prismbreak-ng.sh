@@ -4,7 +4,26 @@ cat > prismbreak-ng2.sh <<'CATEND'
 #!/bin/bash
 
 dialog --msgbox "Install Grub\n\nIn the next step, grub will be installed." 15 40
-pacman -S --noconfirm sudo grub bash-completion os-prober ntp joe
+pacman -S --noconfirm sudo grub bash-completion os-prober ntp joe diffutils gettext curl yajl wget
+mkdir aur
+cd aur
+wget https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz
+tar -xzvf package-query.tar.gz
+cd package-query
+makepkg -s --asroot
+pacman -U --noconfirm package-query-*.tar.xz
+cd ..
+
+wget https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz
+tar -xzvf yaourt.tar.gz
+cd yaourt
+makepkg -s --asroot
+pacman -U yaourt-*.tar.xz
+
+yaourt -S --noconfirm --tmp . jdk
+
+# install wildfly
+
 #read
 echo
 echo Press Return...
