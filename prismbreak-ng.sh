@@ -18,7 +18,7 @@ wget https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz
 tar -xzvf yaourt.tar.gz
 cd yaourt
 makepkg -s --asroot
-pacman -U yaourt-*.tar.xz
+pacman -U --noconfirm yaourt-*.tar.xz
 
 yaourt -S --noconfirm --tmp . jdk
 
